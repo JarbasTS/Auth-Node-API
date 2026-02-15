@@ -1,0 +1,39 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente (nunca commitar senhas e chaves)
+.env
+.env.local
+.env.*.local
+
+# Build / compilado
+build/
+dist/
+out/
+
+# Prisma (cliente gerado)
+prisma/generated/
+/generated/prisma
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Cobertura de testes
+coverage/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDE / Editor (descomente se não quiser versionar)
+# .vscode/
+# .idea/
+
+# Cache
+.cache
+.turbo
+*.tsbuildinfo

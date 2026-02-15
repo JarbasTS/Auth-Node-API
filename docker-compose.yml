@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api:
+    build: . 
+    container_name: auth-node-api
+    restart: always
+    ports:
+      - "3333:3333" 
+    environment:
+      
+      - DATABASE_URL=postgresql://docker:docker@postgres_db:5432/authnode_db?schema=public
+      - JWT_SECRET=sua_chave_secreta_super_segura_aqui
+      - NODE_ENV=production
+    depends_on:
+      - postgres_db 
+
+  
+  postgres_db:
+    image: bitnami/postgresql:latest
+    container_name: auth-node-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=authnode_db
+    volumes:
+      - pgdata:/bitnami/postgresql 
+
+volumes:
+  pgdata:

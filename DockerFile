@@ -1,0 +1,32 @@
+# 1. Imagem Base: Usamos uma versão leve do Node 20 (Linux Alpine ou Slim)
+FROM node:20-slim
+
+# 2. Instalar dependências do sistema necessárias para o Prisma/Bcrypt no Linux
+# O openssl é obrigatório para o Prisma rodar em slim/alpine
+RUN apt-get update -y && apt-get install -y openssl
+
+# 3. Diretório de Trabalho dentro do container
+WORKDIR /app
+
+# 4. Copiar arquivos de dependência
+COPY package*.json ./
+COPY prisma ./prisma/
+
+# 5. Instalar dependências
+# Isso garante que o bcrypt e o prisma sejam compilados para Linux
+RUN npm install
+
+# 6. Copiar o restante do código fonte
+COPY . .
+
+# 7. Gerar o cliente do Prisma (para o OS Linux do container)
+RUN npx prisma generate
+
+# 8. Build do TypeScript para JavaScript
+RUN npm run build
+
+# 9. Expor a porta que o Fastify ouve
+EXPOSE 3333
+
+# 10. Comando para iniciar a aplicação (roda a versão compilada)
+CMD ["npm", "run", "start"]
