@@ -93,9 +93,9 @@ Cadastra um novo usuário.
 
 ---
 
-### Login (sessão)
+### Login
 
-**POST** `/sessions`
+**POST** `/login`
 
 Autentica e retorna um token JWT.
 
@@ -179,7 +179,7 @@ Lista usuários com paginação (sem senha nos dados).
 | Método | Rota       | Autenticação | Descrição              |
 |--------|------------|--------------|------------------------|
 | POST   | `/register`| Não          | Cadastrar usuário      |
-| POST   | `/sessions`| Não          | Login (retorna JWT)    |
+| POST   | `/login`   | Não          | Login (retorna JWT)    |
 | GET    | `/profile` | Sim (JWT)    | Dados do usuário       |
 | GET    | `/users`   | Não          | Listar usuários (paginado) |
 

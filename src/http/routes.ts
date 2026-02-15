@@ -7,7 +7,7 @@ import { fetchUsers } from "./controllers/fetch-users"
 
 export async function appRoutes(app: FastifyInstance){
     app.post('/register', register)
-    app.post('/sessions', authenticate)
+    app.post('/login', authenticate)
     app.get('/users', fetchUsers)
 
     app.get('/profile', {onRequest: [verifyJwt]} ,profile)
