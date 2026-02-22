@@ -1,7 +1,5 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { prisma } from '../../lib/prisma'
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { AuthenticateUserService } from '../../services/authenticate-user'
 

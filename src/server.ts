@@ -7,8 +7,11 @@ const app = fastify()
 
 app.register(appRoutes)
 
-app.listen({ port: 3333 }).then(() => {
-    console.log('🔥 Server is running on http://localhost:3333')
+app.listen({ 
+    port: 3333,
+    host: '0.0.0.0'
+}).then(() => {
+    console.log('🔥 Server is running on http://0.0.0.0:3333')
 })
 
 
