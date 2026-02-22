@@ -1,5 +1,4 @@
-import type { Prisma } from "@prisma/client"
-import type { User } from "@prisma/client"
+import type { Prisma, User } from "../../prisma/generated/prisma/client"
 
 export interface UsersRepository {
     findByEmail(email: string): Promise<User | null>

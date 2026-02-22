@@ -8,10 +8,14 @@ export async function verifyJwt(request: FastifyRequest, reply: FastifyReply){
         return reply.status(401).send({ message: 'Não autorizado 🫣.' })
     }
 
-    const [, token] = authHeader.split(' ')
+    const token = authHeader.split(' ')[1]
+
+    if (!token) {
+        return reply.status(401).send({ message: 'Não autorizado 🫣.' })
+    }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as unknown as {
           userId: string
         }
     

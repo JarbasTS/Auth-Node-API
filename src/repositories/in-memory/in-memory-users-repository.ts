@@ -1,4 +1,4 @@
-import type { User, Prisma } from '@prisma/client'
+import type { User, Prisma } from '../../../prisma/generated/prisma/client'
 import type { UsersRepository } from '../users-repository'
 
 export class InMemoryUsersRepository implements UsersRepository {
@@ -20,5 +20,10 @@ export class InMemoryUsersRepository implements UsersRepository {
 
     this.items.push(user) 
     return user
+  }
+
+  async findAll({ page }: { page: number }) {
+    const items = this.items.slice((page - 1) * 20, page * 20)
+    return items
   }
 }
